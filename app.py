@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import cv2
 import numpy as np
 import base64
 from color_analyzer import analyze_dominant_color # Importa a função criada acima
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/analyze_color', methods=['POST'])
 def analyze_color():
@@ -41,4 +43,4 @@ def analyze_color():
 
 if __name__ == '__main__':
     # Execute a API em modo debug
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
